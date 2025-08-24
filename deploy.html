@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Fluent Connect - AI-Powered Language Learning Platform Demo</title>
+    <meta name="description" content="Experience our comprehensive AI-powered Spanish learning platform featuring AI tutor, vocabulary games, speaking challenges, live chat, and video calls. Free demo with Indian payment methods.">
+    <meta name="keywords" content="Spanish learning, AI tutor, language learning platform, vocabulary games, speaking practice, live chat, video calls, Indian payment methods">
+    <meta property="og:title" content="Fluent Connect - AI Language Learning Demo">
+    <meta property="og:description" content="Try our complete AI-powered Spanish learning platform with games, AI tutor, and live features">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=630&fit=crop">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fluent Connect - AI Language Learning Demo">
+    <meta name="twitter:description" content="Experience our comprehensive AI-powered Spanish learning platform">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        'xs': '475px',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .feature-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-ring {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+            }
+            
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+            }
+            
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        /* Demo Banner */
+        .demo-banner {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 300% 300%;
+            animation: gradientShift 5s ease infinite;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 120px; /* Adjusted for demo banner */
+            height: calc(100vh - 120px);
+            width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        
+        .main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+            padding-top: 120px; /* Adjusted for demo banner */
+        }
+        
+        @media (min-width: 768px) {
+            .sidebar {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 280px;
+            }
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+        }
+        
+        .nav-item:hover {
+            background: rgba(99, 102, 241, 0.05);
+            color: #6366f1;
+        }
+        
+        .nav-item.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+            border-right: 3px solid #6366f1;
+        }
+
+        /* Icon colors */
+        .icon-flame { color: #f59e0b; }
+        .icon-star { color: #eab308; }
+        .icon-trophy { color: #8b5cf6; }
+        .icon-globe { color: #06d6a0; }
+        .icon-bot { color: #6366f1; }
+        .icon-video { color: #ef4444; }
+        .icon-mic { color: #8b5cf6; }
+        .icon-gamepad { color: #f59e0b; }
+        .icon-chat { color: #10b981; }
+        .icon-crown { color: #ec4899; }
+        .icon-user { color: #6b7280; }
+        .icon-home { color: #6366f1; }
+
+        /* Chat styles */
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .chat-messages {
+            padding: 20px;
+            height: 400px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+        }
+        
+        .message-bubble.user {
+            background: #6366f1;
+            color: white;
+        }
+        
+        .message-bubble.ai {
+            background: #f1f5f9;
+            color: #374151;
+        }
+        
+        .chat-input-area {
+            padding: 20px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid rgba(99, 102, 241, 0.1);
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        
+        .send-button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Payment Modal Styles */
+        .payment-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .payment-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .payment-modal.show .payment-modal-content {
+            transform: scale(1);
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            border-color: #6366f1;
+            background: #f8fafc;
+        }
+        
+        .payment-method.selected {
+            border-color: #6366f1;
+            background: #f0f4ff;
+        }
+        
+        .payment-method-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .payment-method-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .razorpay { background: #3395ff; }
+        .paytm { background: #00baf2; }
+        .phonepe { background: #5f259f; }
+        .gpay { background: #4285f4; }
+        .upi { background: #ff6600; }
+        .card { background: #1a202c; }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        
+        .payment-success {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        .success-animation {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            animation: successPulse 1s ease-out;
+        }
+        
+        @keyframes successPulse {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        🌟 LIVE DEMO: Fluent Connect AI Language Learning Platform 🚀 Try all features for free! 
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="fixed w-full top-12 bg-white/95 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleSidebar()" class="p-2 rounded-md hover:bg-gray-100 md:hidden">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-7 h-7 text-indigo-600"></i>
+                        <span class="text-xl font-bold text-indigo-600">Fluent Connect</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="flex items-center gap-2 bg-indigo-50 px-3 py-2 rounded-full text-sm">
+                        <i data-lucide="flame" class="w-4 h-4 icon-flame"></i>
+                        <span>7 day streak</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-indigo-50 px-3 py-2 rounded-full text-sm">
+                        <i data-lucide="star" class="w-4 h-4 icon-star"></i>
+                        <span>1,250 XP</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-indigo-50 px-3 py-2 rounded-full text-sm">
+                        <i data-lucide="trophy" class="w-4 h-4 icon-trophy"></i>
+                        <span>Level 12</span>
+                    </div>
+                    <button class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-600">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="p-5">
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 rounded-lg text-center mb-6">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <span class="text-2xl">🇪🇸</span>
+                    <span class="font-semibold">Spanish</span>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xs uppercase text-gray-500 font-semibold mb-3 px-2">Learning</h3>
+                <div class="nav-item active" onclick="showSection('dashboard')">
+                    <i data-lucide="home" class="w-5 h-5 mr-3 icon-home"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item" onclick="showSection('ai-tutor')">
+                    <i data-lucide="bot" class="w-5 h-5 mr-3 icon-bot"></i>
+                    <span>AI Tutor</span>
+                    <span class="ml-auto bg-green-500 text-white text-xs px-2 py-1 rounded-full">NEW</span>
+                </div>
+                <div class="nav-item" onclick="showSection('speaking')">
+                    <i data-lucide="mic" class="w-5 h-5 mr-3 icon-mic"></i>
+                    <span>Speaking Challenge</span>
+                </div>
+                <div class="nav-item" onclick="showSection('games')">
+                    <i data-lucide="gamepad-2" class="w-5 h-5 mr-3 icon-gamepad"></i>
+                    <span>Vocabulary Games</span>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xs uppercase text-gray-500 font-semibold mb-3 px-2">Communication</h3>
+                <div class="nav-item" onclick="showSection('chat')">
+                    <i data-lucide="message-square" class="w-5 h-5 mr-3 icon-chat"></i>
+                    <span>Live Chat</span>
+                </div>
+                <div class="nav-item" onclick="showSection('video')">
+                    <i data-lucide="video" class="w-5 h-5 mr-3 icon-video"></i>
+                    <span>Video Call</span>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-xs uppercase text-gray-500 font-semibold mb-3 px-2">Account</h3>
+                <div class="nav-item" onclick="showSection('profile')">
+                    <i data-lucide="user" class="w-5 h-5 mr-3 icon-user"></i>
+                    <span>Profile</span>
+                </div>
+                <div class="nav-item" onclick="showSection('pricing')">
+                    <i data-lucide="crown" class="w-5 h-5 mr-3 icon-crown"></i>
+                    <span>Upgrade Plan</span>
+                    <span class="ml-auto bg-pink-500 text-white text-xs px-2 py-1 rounded-full">PRO</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="section p-6">
+            <!-- Welcome Section -->
+            <div class="gradient-bg text-white p-8 rounded-2xl mb-8 text-center">
+                <h1 class="text-4xl font-bold mb-4">¡Hola, Alex! 👋</h1>
+                <p class="text-xl mb-4">Ready to continue your Spanish journey today?</p>
+                <div class="text-sm opacity-90">
+                    Premium Plan • Level 12 • 7 day streak
+                    <i data-lucide="flame" class="w-4 h-4 inline ml-1 icon-flame"></i>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                    <i data-lucide="bar-chart-3" class="w-6 h-6 text-indigo-600"></i>
+                    Your Progress
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+                        <i data-lucide="flame" class="w-10 h-10 mx-auto mb-4 icon-flame"></i>
+                        <div class="text-3xl font-bold text-indigo-600 mb-2">7</div>
+                        <div class="text-sm text-gray-500 uppercase tracking-wide">Day Streak</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+                        <i data-lucide="star" class="w-10 h-10 mx-auto mb-4 icon-star"></i>
+                        <div class="text-3xl font-bold text-indigo-600 mb-2">1,250</div>
+                        <div class="text-sm text-gray-500 uppercase tracking-wide">Total XP</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+                        <i data-lucide="trophy" class="w-10 h-10 mx-auto mb-4 icon-trophy"></i>
+                        <div class="text-3xl font-bold text-indigo-600 mb-2">12</div>
+                        <div class="text-sm text-gray-500 uppercase tracking-wide">Current Level</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg text-center card-hover">
+                        <i data-lucide="globe" class="w-10 h-10 mx-auto mb-4 icon-globe"></i>
+                        <div class="text-3xl font-bold text-indigo-600 mb-2">12</div>
+                        <div class="text-sm text-gray-500 uppercase tracking-wide">Languages</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                    <i data-lucide="zap" class="w-6 h-6 text-indigo-600"></i>
+                    Quick Actions
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="showSection('ai-tutor')">
+                        <i data-lucide="bot" class="w-12 h-12 mb-4 icon-bot"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Chat with AI Tutor</h3>
+                        <p class="text-gray-600 mb-4">Practice conversation with our advanced AI tutor. Get instant feedback and personalized lessons.</p>
+                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full font-semibold">Start Chat</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="showSection('video')">
+                        <i data-lucide="video" class="w-12 h-12 mb-4 icon-video"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Join Video Call</h3>
+                        <p class="text-gray-600 mb-4">Practice with native speakers from around the world through HD video calls.</p>
+                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full font-semibold">Find Speakers</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="showSection('speaking')">
+                        <i data-lucide="mic" class="w-12 h-12 mb-4 icon-mic"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Speaking Challenge</h3>
+                        <p class="text-gray-600 mb-4">Improve your pronunciation with daily speaking challenges and voice recognition.</p>
+                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full font-semibold">Start Challenge</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="showSection('games')">
+                        <i data-lucide="gamepad-2" class="w-12 h-12 mb-4 icon-gamepad"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Play Vocabulary Games</h3>
+                        <p class="text-gray-600 mb-4">Learn new words through fun, interactive games designed for Gen Z learners.</p>
+                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full font-semibold">Play Now</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="showSection('chat')">
+                        <i data-lucide="message-square" class="w-12 h-12 mb-4 icon-chat"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Join Live Chat</h3>
+                        <p class="text-gray-600 mb-4">Connect with learners worldwide in real-time language-specific chat rooms.</p>
+                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full font-semibold">Join Chat</button>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg card-hover cursor-pointer" onclick="showSection('pricing')">
+                        <i data-lucide="crown" class="w-12 h-12 mb-4 icon-crown"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Upgrade Plan</h3>
+                        <p class="text-gray-600 mb-4">Unlock premium features, unlimited access, and advanced learning tools.</p>
+                        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full font-semibold">View Plans</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Tutor Section -->
+        <div id="ai-tutor-section" class="section p-6 hidden">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="flex items-center justify-center gap-3 mb-2">
+                        <i data-lucide="bot" class="w-8 h-8"></i>
+                        <h1 class="text-2xl font-bold">AI Spanish Tutor</h1>
+                    </div>
+                    <p>Practice conversation and get instant feedback</p>
+                </div>
+                
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message">
+                        <div class="message-avatar bg-gradient-to-r from-indigo-600 to-purple-600">
+                            <i data-lucide="bot" class="w-5 h-5"></i>
+                        </div>
+                        <div class="message-bubble ai">
+                            ¡Hola Alex! I'm your AI Spanish tutor. Let's practice conversation! How are you feeling today?
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="Type your message in Spanish..." onkeypress="handleChatEnter(event)">
+                    <button class="send-button" onclick="sendMessage()">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div id="pricing-section" class="section p-6 hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Learning Journey</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Start free and upgrade when you're ready. All plans include Indian payment methods!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Free Plan -->
+                <div class="pricing-card bg-white rounded-3xl shadow-lg p-8 border border-gray-200">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🆓</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Free</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-4">₹0<span class="text-lg text-gray-500">/month</span></div>
+                        <p class="text-gray-600 mb-6">Perfect to get started</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span class="text-gray-700">20 messages/day with AI tutor</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span class="text-gray-700">5 video calls/month</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span class="text-gray-700">10 speaking challenges/month</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-gray-100 text-gray-900 py-3 rounded-full text-lg font-semibold hover:bg-gray-200" onclick="openPaymentModal('free', 'Free', 0)">
+                        Get Started Free
+                    </button>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="pricing-card bg-indigo-600 rounded-3xl shadow-xl p-8 transform scale-105 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-semibold">MOST POPULAR</span>
+                    </div>
+                    
+                    <div class="text-center text-white">
+                        <div class="text-4xl mb-4">⭐</div>
+                        <h3 class="text-2xl font-bold mb-2">Premium</h3>
+                        <div class="text-4xl font-bold mb-4">₹59<span class="text-lg opacity-80">/month</span></div>
+                        <p class="opacity-90 mb-6">Most popular choice</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 text-white">
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-yellow-400 mr-3"></i>
+                            <span>200 messages/day with AI tutor</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-yellow-400 mr-3"></i>
+                            <span>50 video calls/month</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-yellow-400 mr-3"></i>
+                            <span>100 speaking challenges/month</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-white text-indigo-600 py-3 rounded-full text-lg font-semibold hover:bg-gray-100" onclick="openPaymentModal('premium', 'Premium', 59)">
+                        Upgrade to Premium
+                    </button>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="pricing-card bg-white rounded-3xl shadow-lg p-8 border border-gray-200">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🚀</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-4">₹119<span class="text-lg text-gray-500">/month</span></div>
+                        <p class="text-gray-600 mb-6">For serious learners</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Unlimited AI conversations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Unlimited video calls</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Unlimited speaking challenges</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 rounded-full text-lg font-semibold" onclick="openPaymentModal('pro', 'Pro', 119)">
+                        Go Pro
+                    </button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-2">💳 Pay with Razorpay, Paytm, PhonePe, Google Pay, UPI, or Credit Card</p>
+                <p class="text-sm text-gray-500">All plans include 7-day free trial • Cancel anytime • Indian payment methods supported</p>
+            </div>
+        </div>
+
+        <!-- Other sections abbreviated for brevity - games, speaking, video, chat, profile sections would go here with similar structure -->
+        
+        <!-- Games Section -->
+        <div id="games-section" class="section p-4 md:p-6 hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8">
+                    <div class="gradient-bg text-white p-6 md:p-8 rounded-2xl mb-8">
+                        <i data-lucide="gamepad-2" class="w-16 h-16 mx-auto mb-4 icon-gamepad"></i>
+                        <h1 class="text-2xl md:text-4xl font-bold mb-4">Vocabulary Games</h1>
+                        <p class="text-lg md:text-xl mb-4">Learn Spanish through fun, interactive games</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg card-hover cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">🎯</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Word Matcher</h3>
+                            <p class="text-gray-600 mb-4">Match Spanish words with their English translations</p>
+                            <div class="text-sm text-indigo-600 mb-4">Beginner Level</div>
+                            <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full font-semibold w-full">
+                                Play Now
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-lg card-hover cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">🧩</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Sentence Builder</h3>
+                            <p class="text-gray-600 mb-4">Construct correct Spanish sentences from word pieces</p>
+                            <div class="text-sm text-yellow-600 mb-4">Intermediate Level</div>
+                            <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full font-semibold w-full">
+                                Play Now
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-lg card-hover cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-4xl mb-4">⚡</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Speed Quiz</h3>
+                            <p class="text-gray-600 mb-4">Quick-fire vocabulary questions against the clock</p>
+                            <div class="text-sm text-red-600 mb-4">Advanced Level</div>
+                            <button class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full font-semibold w-full">
+                                Play Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other sections placeholder -->
+        <div id="speaking-section" class="section p-4 md:p-6 hidden">
+            <div class="text-center">
+                <div class="gradient-bg text-white p-6 md:p-8 rounded-2xl mb-8">
+                    <i data-lucide="mic" class="w-16 h-16 mx-auto mb-4 icon-mic"></i>
+                    <h1 class="text-2xl md:text-4xl font-bold mb-4">Speaking Challenge</h1>
+                    <p class="text-lg md:text-xl mb-4">Improve your Spanish pronunciation with AI-powered voice recognition</p>
+                </div>
+                <div class="text-6xl mb-4">🎤</div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Voice Recognition Demo</h2>
+                <p class="text-xl text-gray-600 mb-8">Click the microphone to practice pronunciation</p>
+                <button class="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-full font-semibold text-lg pulse-ring">
+                    Start Speaking Challenge
+                </button>
+            </div>
+        </div>
+
+        <div id="chat-section" class="section p-4 md:p-6 hidden">
+            <div class="text-center">
+                <div class="gradient-bg text-white p-6 md:p-8 rounded-2xl mb-8">
+                    <i data-lucide="message-square" class="w-16 h-16 mx-auto mb-4 icon-chat"></i>
+                    <h1 class="text-2xl md:text-4xl font-bold mb-4">Live Chat Rooms</h1>
+                    <p class="text-lg md:text-xl mb-4">Connect with Spanish learners worldwide</p>
+                </div>
+                <div class="text-6xl mb-4">💬</div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Global Language Community</h2>
+                <p class="text-xl text-gray-600 mb-8">Join live conversations with learners from around the world</p>
+                <button class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg">
+                    Join Live Chat
+                </button>
+            </div>
+        </div>
+
+        <div id="video-section" class="section p-4 md:p-6 hidden">
+            <div class="text-center">
+                <div class="gradient-bg text-white p-6 md:p-8 rounded-2xl mb-8">
+                    <i data-lucide="video" class="w-16 h-16 mx-auto mb-4 icon-video"></i>
+                    <h1 class="text-2xl md:text-4xl font-bold mb-4">Video Calls</h1>
+                    <p class="text-lg md:text-xl mb-4">Practice Spanish with native speakers via HD video</p>
+                </div>
+                <div class="text-6xl mb-4">📹</div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Connect with Native Speakers</h2>
+                <p class="text-xl text-gray-600 mb-8">Schedule video calls with certified Spanish tutors</p>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg">
+                    Find a Tutor
+                </button>
+            </div>
+        </div>
+
+        <div id="profile-section" class="section p-4 md:p-6 hidden">
+            <div class="text-center">
+                <div class="gradient-bg text-white p-6 md:p-8 rounded-2xl mb-8">
+                    <i data-lucide="user" class="w-16 h-16 mx-auto mb-4"></i>
+                    <h1 class="text-2xl md:text-4xl font-bold mb-4">Your Profile</h1>
+                    <p class="text-lg md:text-xl mb-4">Manage your learning journey and preferences</p>
+                </div>
+                <div class="text-6xl mb-4">👤</div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Learning Progress</h2>
+                <p class="text-xl text-gray-600 mb-8">Track your achievements and customize your experience</p>
+                <div class="bg-white p-6 rounded-2xl shadow-lg max-w-md mx-auto">
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
+                            A
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900">Alex Johnson</h3>
+                        <p class="text-gray-600">Premium Member</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center p-3 bg-gray-50 rounded-lg">
+                            <div class="text-2xl font-bold text-indigo-600">127</div>
+                            <div class="text-sm text-gray-500">Days Learning</div>
+                        </div>
+                        <div class="text-center p-3 bg-gray-50 rounded-lg">
+                            <div class="text-2xl font-bold text-indigo-600 flex items-center justify-center gap-1">
+                                <i data-lucide="flame" class="w-6 h-6 text-orange-500"></i>
+                                7
+                            </div>
+                            <div class="text-sm text-gray-500">Current Streak</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="payment-modal">
+        <div class="payment-modal-content">
+            <div class="flex items-center justify-between mb-6">
+                <h2 id="modal-title" class="text-2xl font-bold text-gray-900">Subscribe to Premium</h2>
+                <button onclick="closePaymentModal()" class="p-2 hover:bg-gray-100 rounded-full">
+                    <i data-lucide="x" class="w-6 h-6 text-gray-500"></i>
+                </button>
+            </div>
+            
+            <div id="payment-step-1">
+                <div class="mb-6 p-4 bg-indigo-50 rounded-lg">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div id="plan-icon" class="text-2xl">⭐</div>
+                        <div>
+                            <h3 id="plan-name" class="text-lg font-semibold text-gray-900">Premium Plan</h3>
+                            <p id="plan-price" class="text-2xl font-bold text-indigo-600">₹59/month</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">7-day free trial • Cancel anytime</p>
+                </div>
+                
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Select Payment Method</h3>
+                
+                <div class="space-y-3 mb-6">
+                    <div class="payment-method selected" onclick="selectPaymentMethod('razorpay')" data-method="razorpay">
+                        <div class="payment-method-info">
+                            <div class="payment-method-icon razorpay text-white font-bold">
+                                R
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Razorpay</div>
+                                <div class="text-sm text-gray-500">UPI, Cards, NetBanking, Wallets</div>
+                            </div>
+                        </div>
+                        <div class="w-5 h-5 border-2 border-indigo-600 rounded-full flex items-center justify-center">
+                            <div class="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method" onclick="selectPaymentMethod('paytm')" data-method="paytm">
+                        <div class="payment-method-info">
+                            <div class="payment-method-icon paytm text-white font-bold">
+                                P
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Paytm</div>
+                                <div class="text-sm text-gray-500">Paytm Wallet & UPI</div>
+                            </div>
+                        </div>
+                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full"></div>
+                    </div>
+                    
+                    <div class="payment-method" onclick="selectPaymentMethod('phonepe')" data-method="phonepe">
+                        <div class="payment-method-info">
+                            <div class="payment-method-icon phonepe text-white font-bold">
+                                ₱
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">PhonePe</div>
+                                <div class="text-sm text-gray-500">UPI & Wallet</div>
+                            </div>
+                        </div>
+                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full"></div>
+                    </div>
+                    
+                    <div class="payment-method" onclick="selectPaymentMethod('gpay')" data-method="gpay">
+                        <div class="payment-method-info">
+                            <div class="payment-method-icon gpay text-white font-bold">
+                                G
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Google Pay</div>
+                                <div class="text-sm text-gray-500">UPI Payments</div>
+                            </div>
+                        </div>
+                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full"></div>
+                    </div>
+                    
+                    <div class="payment-method" onclick="selectPaymentMethod('upi')" data-method="upi">
+                        <div class="payment-method-info">
+                            <div class="payment-method-icon upi text-white font-bold">
+                                U
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">UPI</div>
+                                <div class="text-sm text-gray-500">Direct UPI Payment</div>
+                            </div>
+                        </div>
+                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full"></div>
+                    </div>
+                    
+                    <div class="payment-method" onclick="selectPaymentMethod('card')" data-method="card">
+                        <div class="payment-method-info">
+                            <div class="payment-method-icon card text-white font-bold">
+                                💳
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Credit/Debit Card</div>
+                                <div class="text-sm text-gray-500">Visa, Mastercard, RuPay</div>
+                            </div>
+                        </div>
+                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="alex.johnson@email.com" value="alex.johnson@email.com">
+                </div>
+                
+                <button onclick="proceedToPayment()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-lg font-semibold text-lg hover:from-indigo-700 hover:to-purple-700">
+                    <span id="payment-button-text">Start 7-Day Free Trial</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 inline ml-2"></i>
+                </button>
+                
+                <div class="text-xs text-gray-500 text-center mt-3">
+                    🔒 Secure payment • No commitment • Cancel anytime
+                </div>
+            </div>
+            
+            <div id="payment-success" class="payment-success hidden">
+                <div class="success-animation">
+                    <i data-lucide="check" class="w-10 h-10 text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Payment Successful!</h3>
+                <p class="text-gray-600 mb-4">Welcome to Fluent Connect <span id="success-plan-name">Premium</span>!</p>
+                <div class="bg-green-50 p-4 rounded-lg mb-4">
+                    <div class="text-sm text-green-800">
+                        <div class="font-semibold mb-1">✅ Your subscription is now active</div>
+                        <div class="mb-1">• 7-day free trial started</div>
+                        <div class="mb-1">• Full access to all premium features</div>
+                        <div>• Confirmation sent to your email</div>
+                    </div>
+                </div>
+                <button onclick="closePaymentModal()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-lg font-semibold">
+                    Start Learning! 🚀
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Global variables
+        let sidebarOpen = false;
+        const aiResponses = [
+            "¡Excelente! Great grammar! Let's practice some more difficult phrases.",
+            "I notice you're improving! Try to add more adjectives to your sentences.",
+            "Perfect pronunciation! Let's work on some irregular verbs now.",
+            "Good effort! Remember, 'ser' and 'estar' both mean 'to be' but have different uses.",
+            "¡Muy bien! Your vocabulary is expanding. Let's try a role-play scenario.",
+            "Excellent! I can see you're getting more confident with the language."
+        ];
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebarOpen = !sidebarOpen;
+            sidebar.classList.toggle('open');
+        }
+
+        // Show different sections
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            const sectionMap = {
+                'dashboard': 'dashboard-section',
+                'ai-tutor': 'ai-tutor-section',
+                'pricing': 'pricing-section',
+                'speaking': 'speaking-section',
+                'games': 'games-section',
+                'chat': 'chat-section',
+                'video': 'video-section',
+                'profile': 'profile-section'
+            };
+            
+            const targetSection = sectionMap[sectionName] || 'other-sections';
+            const sectionElement = document.getElementById(targetSection);
+            
+            if (sectionElement) {
+                sectionElement.classList.remove('hidden');
+            }
+            
+            // Add active class to clicked nav item
+            if (window.event) {
+                const clickedItem = window.event.target.closest('.nav-item');
+                if (clickedItem) {
+                    clickedItem.classList.add('active');
+                }
+            }
+            
+            // Close sidebar on mobile after navigation
+            if (window.innerWidth < 768 && sidebarOpen) {
+                setTimeout(() => {
+                    toggleSidebar();
+                }, 150);
+            }
+            
+            // Re-initialize Lucide icons after section change
+            setTimeout(() => {
+                lucide.createIcons();
+            }, 50);
+        }
+
+        // Chat functionality
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            input.value = '';
+            
+            // Simulate AI response after delay
+            setTimeout(() => {
+                const aiResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+                addMessage(aiResponse, false);
+            }, 1000);
+        }
+
+        function addMessage(text, isUser) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : ''}`;
+            
+            const avatarIcon = isUser ? 'user' : 'bot';
+            const avatarBg = isUser ? 'bg-indigo-600' : 'bg-gradient-to-r from-indigo-600 to-purple-600';
+            const bubbleClass = isUser ? 'user' : 'ai';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar ${avatarBg}">
+                    <i data-lucide="${avatarIcon}" class="w-5 h-5"></i>
+                </div>
+                <div class="message-bubble ${bubbleClass}">
+                    ${text}
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Re-initialize Lucide icons for new elements
+            lucide.createIcons();
+        }
+
+        function handleChatEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Handle responsive sidebar
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                document.getElementById('sidebar').classList.remove('open');
+                sidebarOpen = false;
+            }
+        });
+
+        // Payment Modal Functions
+        let currentPaymentData = null;
+        
+        function openPaymentModal(planType, planName, price) {
+            currentPaymentData = { planType, planName, price };
+            
+            // Update modal content based on plan
+            const modal = document.getElementById('payment-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const planIcon = document.getElementById('plan-icon');
+            const planNameEl = document.getElementById('plan-name');
+            const planPriceEl = document.getElementById('plan-price');
+            const paymentButtonText = document.getElementById('payment-button-text');
+            
+            // Set plan-specific content
+            const planConfig = {
+                'free': {
+                    icon: '🆓',
+                    title: 'Get Started with Free Plan',
+                    buttonText: 'Continue with Free Plan'
+                },
+                'premium': {
+                    icon: '⭐',
+                    title: 'Subscribe to Premium',
+                    buttonText: 'Start 7-Day Free Trial'
+                },
+                'pro': {
+                    icon: '🚀',
+                    title: 'Upgrade to Pro',
+                    buttonText: 'Start 7-Day Free Trial'
+                }
+            };
+            
+            const config = planConfig[planType];
+            modalTitle.textContent = config.title;
+            planIcon.textContent = config.icon;
+            planNameEl.textContent = `${planName} Plan`;
+            planPriceEl.textContent = price > 0 ? `₹${price}/month` : 'Free Forever';
+            paymentButtonText.textContent = config.buttonText;
+            
+            // Show modal
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            
+            // Re-initialize icons
+            setTimeout(() => lucide.createIcons(), 100);
+        }
+        
+        function closePaymentModal() {
+            const modal = document.getElementById('payment-modal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            
+            // Reset to payment step 1
+            document.getElementById('payment-step-1').style.display = 'block';
+            document.getElementById('payment-success').style.display = 'none';
+            document.getElementById('payment-success').classList.add('hidden');
+        }
+        
+        function selectPaymentMethod(method) {
+            // Remove selected class from all payment methods
+            document.querySelectorAll('.payment-method').forEach(pm => {
+                pm.classList.remove('selected');
+                const radio = pm.querySelector('div:last-child');
+                radio.classList.remove('border-indigo-600');
+                radio.classList.add('border-gray-300');
+                radio.innerHTML = '';
+            });
+            
+            // Add selected class to clicked method
+            const selectedMethod = document.querySelector(`[data-method="${method}"]`);
+            selectedMethod.classList.add('selected');
+            const radio = selectedMethod.querySelector('div:last-child');
+            radio.classList.remove('border-gray-300');
+            radio.classList.add('border-indigo-600');
+            radio.innerHTML = '<div class="w-3 h-3 bg-indigo-600 rounded-full"></div>';
+        }
+        
+        function proceedToPayment() {
+            // Hide payment step 1
+            document.getElementById('payment-step-1').style.display = 'none';
+            
+            // Show success screen
+            const successScreen = document.getElementById('payment-success');
+            const successPlanName = document.getElementById('success-plan-name');
+            
+            successScreen.classList.remove('hidden');
+            successScreen.style.display = 'block';
+            successPlanName.textContent = currentPaymentData.planName;
+            
+            // Re-initialize icons for success screen
+            setTimeout(() => lucide.createIcons(), 100);
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('payment-modal');
+            if (e.target === modal && modal.classList.contains('show')) {
+                closePaymentModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('payment-modal');
+                if (modal.classList.contains('show')) {
+                    closePaymentModal();
+                }
+            }
+        });
+
+        // Initialize dashboard view
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('dashboard');
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
